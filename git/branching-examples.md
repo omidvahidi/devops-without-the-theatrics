@@ -26,3 +26,9 @@ git commit -m "Hotfix: block unrestricted outbound traffic"
 git push -u origin hotfix/block-open-egress  
 
 Merge through PR if possible. If not, document the exception and follow up with normal review after the incident.  
+
+## Pattern C: Release branches only when required
+Use when change windows, certification, or external release processes force separation.  
+git checkout -b release/2026-01  
+git push -u origin release/2026-01  
+Treat release branches as contracts. Limit scope. Avoid feature work on them.  
