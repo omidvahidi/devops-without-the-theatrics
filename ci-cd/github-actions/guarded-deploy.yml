@@ -1,0 +1,39 @@
+name: guarded-deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show intent
+        run: |
+          echo "Deploy requested"
+          echo "Environment: ${{ inputs.environment }}"
+          echo "Commit: $GITHUB_SHA"
+
+      - name: Guardrail
+        run: |
+          if [ "${{ inputs.environment }}" = "prod" ]; then
+            echo "Prod deploy requires explicit workflow dispatch and environment approval in GitHub."
+          fi
+
+      - name: Deploy placeholder
+        run: |
+          echo "This repo does not include a real deploy step."
+          echo "The point is the control surface: trigger, environment boundary, and reviewable intent."
