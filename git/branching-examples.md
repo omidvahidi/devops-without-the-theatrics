@@ -5,7 +5,7 @@ These patterns are intentionally simple. They are designed for clarity, reviewab
 ## Pattern A: Short-lived feature branches
 Use for routine changes that should be reviewed before merging.
 
-```bash
+bash
 git checkout main
 git pull --ff-only
 
