@@ -1,0 +1,24 @@
+---
+- name: Ensure common packages are present
+  package:
+    name:
+      - curl
+      - jq
+      - ca-certificates
+    state: present
+
+- name: Ensure a baseline directory exists
+  file:
+    path: /etc/company
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Write baseline marker (idempotent)
+  copy:
+    dest: /etc/company/baseline.txt
+    content: "baseline-applied=true\n"
+    owner: root
+    group: root
+    mode: "0644"
