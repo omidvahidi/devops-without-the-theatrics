@@ -1,0 +1,61 @@
+name: infra-plan-apply
+
+on:
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "infrastructure/terraform/**"
+      - ".github/workflows/infra-plan-apply.yml"
+  push:
+    branches: [ "main" ]
+    paths:
+      - "infrastructure/terraform/**"
+      - ".github/workflows/infra-plan-apply.yml"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  plan:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infrastructure/terraform
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+
+      - name: Init
+        run: terraform init -input=false
+
+      - name: Validate
+        run: terraform validate
+
+      - name: Plan
+        run: terraform plan -input=false -no-color -out=tfplan
+
+  apply:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infrastructure/terraform
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+
+      - name: Init
+        run: terraform init -input=false
+
+      - name: Apply
+        run: terraform apply -input=false -auto-approve
