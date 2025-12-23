@@ -14,3 +14,13 @@ git checkout -b feature/restrict-egress
 git add .
 git commit -m "Restrict outbound traffic to approved ranges"
 git push -u origin feature/restrict-egress
+
+## Pattern B: Hotfix branches with traceability
+git checkout main
+git pull --ff-only
+
+git checkout -b hotfix/block-open-egress
+# edit files
+git add .
+git commit -m "Hotfix: block unrestricted outbound traffic"
+git push -u origin hotfix/block-open-egress
