@@ -1,0 +1,28 @@
+[
+  {
+    "event": "request_started",
+    "service": "payments-api",
+    "request_id": "9f31",
+    "route": "POST /v1/authorise",
+    "user_agent": "mobile-app",
+    "timestamp": "2026-01-03T09:12:01Z"
+  },
+  {
+    "event": "dependency_call",
+    "service": "payments-api",
+    "request_id": "9f31",
+    "dependency": "authorisation-service",
+    "latency_ms": 481,
+    "result": "timeout",
+    "timestamp": "2026-01-03T09:12:02Z"
+  },
+  {
+    "event": "request_completed",
+    "service": "payments-api",
+    "request_id": "9f31",
+    "status": 502,
+    "latency_ms": 612,
+    "failure_mode": "dependency_timeout",
+    "timestamp": "2026-01-03T09:12:02Z"
+  }
+]
