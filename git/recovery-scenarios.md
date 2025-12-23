@@ -8,12 +8,12 @@ You meant to commit on a feature branch but committed on `main`.
 bash
 git log --oneline -n 3  
 
-'# identify the commit hash, for example abc1234
+'# identify the commit hash, for example abc1234  
 git checkout -b feature/move-commit  
 git checkout main  
 git reset --hard HEAD~1  
 git checkout feature/move-commit  
-'#This is safe only if you have not pushed the bad commit to a shared branch.
+'#This is safe only if you have not pushed the bad commit to a shared branch.  
 ## Scenario 2: You pushed something you should not have (shared branch)
 Do not rewrite shared history. Revert.  
 git log --oneline  
@@ -23,7 +23,7 @@ Revert creates an explicit undo with a durable audit trail.
 ## Scenario 3: You need to recover a lost commit
 If you reset or rebase and think you lost work, use reflog.  
 git reflog  
-'# find the lost commit hash
+'# find the lost commit hash  
 git checkout -b recovery/<something>  
 git cherry-pick <lost-commit-hash>  
 ## Scenario 4: You pulled and now have conflicts
