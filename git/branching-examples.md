@@ -24,3 +24,5 @@ git checkout -b hotfix/block-open-egress
 git add .
 git commit -m "Hotfix: block unrestricted outbound traffic"
 git push -u origin hotfix/block-open-egress
+
+Merge through PR if possible. If not, document the exception and follow up with normal review after the incident.
