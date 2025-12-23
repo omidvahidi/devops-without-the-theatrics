@@ -1,0 +1,14 @@
+---
+- name: Baseline convergence for reporting nodes
+  hosts: reporting_nodes
+  become: true
+
+  roles:
+    - base_os
+
+  tasks:
+    - name: Ensure reporting service is running
+      service:
+        name: reporting-service
+        state: running
+        enabled: true
