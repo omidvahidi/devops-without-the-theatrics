@@ -10,7 +10,7 @@ git checkout main
 git pull --ff-only
 
 git checkout -b feature/restrict-egress
-# edit files
+### edit files
 git add .
 git commit -m "Restrict outbound traffic to approved ranges"
 git push -u origin feature/restrict-egress
@@ -20,7 +20,7 @@ git checkout main
 git pull --ff-only
 
 git checkout -b hotfix/block-open-egress
-# edit files
+### edit files
 git add .
 git commit -m "Hotfix: block unrestricted outbound traffic"
 git push -u origin hotfix/block-open-egress
